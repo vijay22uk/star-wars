@@ -15,6 +15,11 @@ class App extends Component {
     cb();
   }
   render() {
+    if(this.state.hasError){
+      return (<p className="alert alert-info">
+      Something went wrong
+      </p>)
+    }
     return (
       <Router>
         <div className="App">
@@ -26,6 +31,10 @@ class App extends Component {
       </Router>
 
     );
+  }
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+    console.log(error, info);
   }
 }
 
