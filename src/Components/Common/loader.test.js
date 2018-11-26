@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import {Loader} from './loader';
 
-it('renders without csrashing', () => {
+it('Loader renders without csrashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<Loader />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

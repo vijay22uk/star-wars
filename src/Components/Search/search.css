@@ -1,0 +1,18 @@
+.planet-card{
+    height: 200px;
+}
+.planetlist{
+    padding-top: 12px;
+}
+.pills{
+    background-color: #1070ec;
+    height: 12px;
+    margin:2px;
+    border-radius: 25px;
+}
+.unknow-pills {
+    height: 12px;
+    background-color: #8ff530;
+    border-radius: 25px;
+    margin:2px;
+}

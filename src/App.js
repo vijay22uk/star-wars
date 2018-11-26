@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { Login, Home, PlanetDetails } from './Components/';
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import Store from './Store';
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  onLogin = (_characterData, cb) => {
+    this.setState({
+      characterData: _characterData.results[0]
+    });
+    Store.setAuth(true);
+    Store.setUserDetails(_characterData.results[0]);
+    cb();
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <Route path="/Login" exact render={(props)=> <Login { ...props } onLogin={this.onLogin}/>
+          } />
+          <PrivateRoute exact path='/planet/:id' component={PlanetDetails} />
+          <PrivateRoute path='/' exact component={Home} />
+        </div>
+      </Router>
+
     );
   }
 }
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    Store.isAuthenticated
+      ? <Component {...props} {...Store.getUserDetails()} />
+      : <Redirect to='/login' {...props} />
+  )} />
+)
 
 export default App;

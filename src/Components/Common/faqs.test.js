@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Faqs } from './faqs';
 
-it('renders without csrashing', () => {
+it('Faqs renders without csrashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<Faqs />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
