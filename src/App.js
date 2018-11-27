@@ -5,6 +5,9 @@ import Store from './Store';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hasError: false
+    };
   }
   onLogin = (_characterData, cb) => {
     this.setState({
